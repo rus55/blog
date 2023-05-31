@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
+import {Link} from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 
 const Posts = () => {
     let [posts, setPosts] = useState([])
     let [comments, setComments] = useState([])
     let [avatar, setAvatar] = useState('')
+    let [isLoading, setIsLoading] = useState('')
 
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/photos')
@@ -17,32 +20,42 @@ const Posts = () => {
             })
     }, [])
 
-    useEffect(() => {
-        let commentsTemp = []
-        Promise.all(posts.map((post) => {
-            return axios.get(`https://jsonplaceholder.typicode.com/post/${post.id}/comments`)
-        })).then(function (response) {
-            response.map((item) => {
-                commentsTemp[item.data[0].postId] = item.data || []
-            })
-            setComments(commentsTemp)
-        })
-    }, [posts.length])
+    function showComments(postId) {
+        let commentsTemp = comments
+        if (commentsTemp[postId]?.length) {
+            commentsTemp[postId] = []
+            setComments([...commentsTemp])
+        } else {
+            setIsLoading(postId)
+            axios.get(`https://jsonplaceholder.typicode.com/post/${postId}/comments`)
+                .then(function (response) {
+                    commentsTemp[postId] = response.data
+                    setTimeout(() => {
+                        setComments([...commentsTemp])
+                        setIsLoading('')
+                    }, 2000)
+                })
+        }
+    }
 
     return (<div className="App">
         <div className='postsContainer'>
-            {posts.map((post) => {
+            {posts.map(post => {
                 return <div className='postItem' key={post.id}>
-                    <div className='postImg'><img src={`${avatar}`}/></div>
+                    <div className='postImg'><Link to={`/details/${post.userId}`}><img src={`${avatar}`}/></Link></div>
                     <div>
                         <div className='postTitle'>{post.title}</div>
                         <div className='postText'>{post.body}</div>
                         <div className='postComments'>
-                            <ul>
-                                {comments[post.id]?.map((comment) => {
-                                    return <li key={comment.id}>{comment.body}</li>
-                                })}
-                            </ul>
+                            <button onClick={() => showComments(post.id)}>Comments</button>
+                            {isLoading === post.id
+                                ? <Spinner animation="border"/>
+                                : <ul>
+                                    {comments[post.id]?.map((comment) => {
+                                        return <li key={comment.id}>{comment.email} : {comment.body}</li>
+                                    })}
+                                </ul>
+                            }
                         </div>
                     </div>
                 </div>

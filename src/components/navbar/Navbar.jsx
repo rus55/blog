@@ -23,12 +23,12 @@ const HeaderNavbar = () => {
                             r-mit@mail.ru
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link className="menuLink" eventKey={3}>
+                            <Nav.Link className="menuLink" eventKey={2}>
                                 <NavLink className="text-light menuText" to="/">List of posts</NavLink>
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link className="menuLink" eventKey={4}>
+                            <Nav.Link className="menuLink" eventKey={3}>
                                 <NavLink className="text-light menuText" to="/about">About me</NavLink>
                             </Nav.Link>
                         </Nav.Item>
