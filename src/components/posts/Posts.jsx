@@ -8,15 +8,22 @@ const Posts = () => {
     let [comments, setComments] = useState([])
     let [avatar, setAvatar] = useState('')
     let [isLoading, setIsLoading] = useState('')
+    let [error, setError] = useState('')
 
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/photos')
             .then(function (response) {
                 setAvatar(response.data[0].thumbnailUrl)
             })
+            .catch((reject) => {
+                setError(reject.message)
+            })
         axios.get('https://jsonplaceholder.typicode.com/posts')
             .then(function (response) {
                 setPosts(response.data)
+            })
+            .catch((reject) => {
+                setError(reject.message)
             })
     }, [])
 
@@ -35,32 +42,39 @@ const Posts = () => {
                         setIsLoading('')
                     }, 2000)
                 })
+                .catch((reject) => {
+                    setError(reject.message)
+                })
         }
     }
 
     return (<div className="App">
-        <div className='postsContainer'>
-            {posts.map(post => {
-                return <div className='postItem' key={post.id}>
-                    <div className='postImg'><Link to={`/details/${post.userId}`}><img src={`${avatar}`}/></Link></div>
-                    <div>
-                        <div className='postTitle'>{post.title}</div>
-                        <div className='postText'>{post.body}</div>
-                        <div className='postComments'>
-                            <button onClick={() => showComments(post.id)}>Comments</button>
-                            {isLoading === post.id
-                                ? <Spinner animation="border"/>
-                                : <ul>
-                                    {comments[post.id]?.map((comment) => {
-                                        return <li key={comment.id}>{comment.email} : {comment.body}</li>
-                                    })}
-                                </ul>
-                            }
+        {error !== ''
+            ? <div>Failed. Cause of error: {error}</div>
+            : <div className='postsContainer'>
+                {posts.map(post => {
+                    return <div className='postItem' key={post.id}>
+                        <div className='postImg'><Link to={`/details/${post.userId}`}><img src={`${avatar}`}/></Link></div>
+                        <div>
+                            <div className='postTitle'>{post.title}</div>
+                            <div className='postText'>{post.body}</div>
+                            <div className='postComments'>
+                                <button onClick={() => showComments(post.id)}>Comments</button>
+                                {isLoading === post.id
+                                    ? <Spinner animation="border"/>
+                                    : <ul>
+                                        {comments[post.id]?.map((comment) => {
+                                            return <li key={comment.id}>{comment.email} : {comment.body}</li>
+                                        })}
+                                    </ul>
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-            })}
-        </div>
+                })}
+            </div>
+        }
+
     </div>);
 }
 
