@@ -1,3 +1,10 @@
+<h1 align="center">A single page application with a list of posts</h1>
+The frontend is written in React, React-router, Redux, Redux-saga, React-bootstrap, Axios. 
+
+The backend is taken via api https://jsonplaceholder.typicode.com.
+
+____
+
 Key technologies:
 1. React
 2. React bootstrap
@@ -7,12 +14,16 @@ Key technologies:
 6. Redux-saga
 7. Git
 
+____
+
 Task description
 You need to create a site with posts, where there will be 3 pages (routes):
 1. List of posts (main page), where all posts will be located.
 2. About me, where brief information about you will be located.
 3. Details about the user (where you need to display information about the user and a list of his posts)
 You need to get the data through the fake api https://jsonplaceholder.typicode.com.
+
+____
 
 Detailed description
 1. List of posts (main page)
@@ -35,6 +46,8 @@ Detailed description
 3.2 Display a list of posts belonging only to this user, the structure of the posts themselves is completely identical to p.1.2.
 3.3. Add a loader by analogy with p.1.8.
 3.4. Make a "Back" button, when clicked, it will take you to the main page.
+
+____
 
 P.S.
 1. As a basis, you can take the React App template.
