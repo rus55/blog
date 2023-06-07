@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+<h1 align="center">A single page application with a list of posts</h1>
+The frontend is written in React, React-router, Redux, Redux-saga, React-bootstrap, Axios. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The backend is taken via api https://jsonplaceholder.typicode.com.
 
-## Available Scripts
+____
 
-In the project directory, you can run:
+Key technologies:
+1. React
+2. React bootstrap
+3. React-router
+4. Axios
+5. Redux
+6. Redux-saga
+7. Git
 
-### `npm start`
+____
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Task description
+You need to create a site with posts, where there will be 3 pages (routes):
+1. List of posts (main page), where all posts will be located.
+2. About me, where brief information about you will be located.
+3. Details about the user (where you need to display information about the user and a list of his posts)
+You need to get the data through the fake api https://jsonplaceholder.typicode.com.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+____
 
-### `npm test`
+Detailed description
+1. List of posts (main page)
+1.1. Should contain a list of all posts
+1.2 Each post consists of a title, text, author's avatar and a list of comments
+1.3 Take title and text from api
+1.4 The avatar must be one image for all users, but when you click on it, you must go to the User Details page.
+1.5 The list of comments is initially hidden, only the Comments button is available
+1.6 When you click on the Comments button, it should be loaded from api and a list of comments to this post should be displayed. The list should hide when clicked again.
+1.7 A comment consists of a title (email) and text
+1.8. When loading data from the server, you need to display the loader first, and only then the loaded content (create an additional artificial delay of 0.5 seconds so that the loader hangs longer).
+1.9. There should be a header with a "burger menu". When you click on it, a navigation menu should pop up on the left, where there will be 2 links (List of posts and About me), as well as your avatar, name and mailing address.
+1.10 There should be the ability to search by the title of the post, with the ability to clear the field through the cross.
+1.11 It should be possible to sort by post title.
+1.12 There must be pagination.
+2. About me
+2.1. It's simple, tell us a little about yourself. Make this page a separate route while keeping the header and menu burger.
+3. Details about the user (transition by clicking on the avatar next to the post)
+3.1. It is necessary to create a card where to display brief information about the user. The information must match the author of the post.
+3.2 Display a list of posts belonging only to this user, the structure of the posts themselves is completely identical to p.1.2.
+3.3. Add a loader by analogy with p.1.8.
+3.4. Make a "Back" button, when clicked, it will take you to the main page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+____
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+P.S.
+1. As a basis, you can take the React App template.
+2. Move the logic of working with the server into saga effects.
+3. Be sure to break logically independent page elements into components.
+4. On the User Details page, data should be loaded even after refreshing this page.
+5. Implement the entire interface using the React-bootstrap ui-library (use the components that this library provides).
+6. While writing code, commit often (for each significant interface feature).
+7. Make error handling in case an error comes from the server.
+8. The layout should look good for small and large device screens.
