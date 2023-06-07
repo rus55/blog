@@ -6,7 +6,7 @@ const AboutMe = () => {
         <>
             <Link to={'/'}>Back</Link>
             <div>
-                <div>FRONTEND DEVELOPER|</div>
+                <div>FRONTEND DEVELOPER</div>
                 <div>I am a frontend developer with experience in developing user interface (UI) for web applications
                     using
                     React, Redux, Redux Toolkit, JavaScript, TypeScript.
